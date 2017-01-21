@@ -1,0 +1,59 @@
+.page {
+    p {font-size: .9rem}
+}
+
+.calculator {padding: 10px}
+
+.about, .checkTheMath {
+    max-width: 700px;
+    margin: auto;
+
+    h2, h4, p {
+        padding: 0 10px;
+    }
+
+    h2 {
+        font-size: 1.8rem;
+        margin-top: 0;
+        padding-top: .7rem;
+        margin-bottom: .5rem;
+    }
+
+    hr {
+        margin: 0 auto 2rem;
+        width: calc(100% - 20px);
+    }
+
+    h4 {
+        font-size: 1.4rem;
+    }
+}
+
+.about {
+
+    img {
+        float: left;
+        width: 100%;
+        max-width: 375px;
+        padding-bottom: 20px;
+    }
+}
+
+input[name="page-selector"] {
+    position: absolute;
+    opacity: 0;
+    top: -9999px;
+    left: -9999px;
+}
+
+#radio-calculator:not(:checked) ~ #calculator {
+    display: none;
+}
+
+#radio-about:not(:checked) ~ #about {
+    display: none;
+}
+
+#radio-checkTheMath:not(:checked) ~ #checkTheMath {
+    display: none;
+}

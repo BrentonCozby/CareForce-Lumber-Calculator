@@ -1,0 +1,47 @@
+.tableDiv {
+    width: 100%;
+    max-width: 700px; // copy max width
+    margin: auto;
+
+    .tableHeader {
+        margin-bottom: 1rem;
+    }
+
+    .tableNote {
+        font-size: .7rem;
+        font-style: italic;
+        margin-top: .5rem;
+    }
+}
+
+table {
+    width: 100%;
+}
+
+th, td {
+    padding: 10px 15px;
+    font-size: .8rem;
+    font-family: $roboto;
+    border: 1px solid #ccc;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 1.4;
+}
+
+th {
+    font-family: $overlock-sc;
+    font-size: .9rem;
+    font-weight: bolder;
+}
+
+tr:focus, tr:hover {
+    background-color: #fff6e6;
+}
+
+thead, tfoot {
+    background-color: #eee;
+
+    tr:focus, tr:hover {
+        background-color: #eee;
+    }
+}

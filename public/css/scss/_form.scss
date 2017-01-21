@@ -1,0 +1,110 @@
+form {
+    text-align: center;
+
+    select, input, button {
+        border-radius: 4px;
+        margin: 10px;
+        border: 2px solid #ddd;
+        padding: 4px;
+        font-size: 1rem;
+        font-family: $overlock-sc;
+        vertical-align: middle;
+        transition: all .1s;
+
+        &:focus, &:hover {
+            outline: none;
+            border: 2px solid orange;
+            box-shadow: inset 0 0 5px -1px #555;
+        }
+    }
+
+    select {
+        background-color: #fff;
+
+        optgroup {
+            font-family: $overlock-sc;
+            background-color: #ddd;
+            position: sticky;
+            top: 0px;
+
+            option {
+                background-color: #fff;
+                font-family: $roboto;
+            }
+        }
+    }
+
+    input {
+        max-width: 40px;
+        padding-left: 10px;
+        line-height: 1;
+    }
+
+    button {
+        border: 1px solid #ccc;
+        cursor: pointer;
+
+        &:hover, &:focus {
+            border: 1px solid #ccc;
+            background-color: #eee;
+            box-shadow: 0 2px 0 0 #999;
+            transform: translateY(-2px);
+        }
+
+        &:active {
+            box-shadow: none;
+            transform: translateY(0px);
+        }
+    }
+}
+
+.validate {
+    animation-name: redBorder;
+    animation-duration: .5s;
+}
+
+@keyframes redBorder {
+    from {border-color: red}
+    to {border-color: #ddd}
+}
+
+#imagePlaceholder {
+    display: none;
+    width: 1px;
+    height: 12px;
+}
+
+.previewImage {
+    display: inline-block;
+    max-width: 35px;
+    vertical-align: middle;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 3px 10px -3px #000;
+    margin: 10px;
+}
+
+.lightbox {
+    margin: 0;
+    width: 90vw;
+    max-width: 800px;
+    border-radius: 10px;
+    position: absolute;
+    box-shadow: 0 20px 30px -15px #000;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 200;
+}
+
+
+.enlargeImage {
+    animation-name: enlarge;
+    animation-duration: .5s;
+}
+
+@keyframes enlarge {
+    from {transform: scale(1.2);}
+    to {transform: scale(1);}
+}

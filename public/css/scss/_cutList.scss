@@ -1,0 +1,43 @@
+$cuts-border-color: #aaa;
+
+.cutListDiv {
+    width: 100%;
+    max-width: 1280px;
+    margin: auto;
+    padding-bottom: 20px;
+}
+
+.cutListHeader {
+    margin-top: 2.5rem;
+    margin-bottom: -0.5rem;
+    max-width: none;
+}
+
+.beam {
+    background-color: $cuts-border-color;
+    display: block;
+}
+
+.cutsContainer {
+    display: table;
+    border-collapse: collapse;
+    border-spacing: 0;
+    background-image: url('http://i.imgur.com/lRIEMqc.jpg');
+    background-position: center;
+    background-size: cover;
+}
+
+.cut {
+    display: table-cell;
+    border: 1px solid $cuts-border-color;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 100%;
+    font-family: $roboto;
+    font-size: .8rem;
+}
+
+.cutDescription {
+    margin-bottom: .8rem;
+    max-width: none;
+}

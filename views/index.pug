@@ -1,0 +1,60 @@
+extends layout
+
+block content
+    #overlay.overlay
+
+    include partials/header.pug
+
+    main
+        #wrapper.wrapper
+            input#radio-about(type='radio', name='page-selector', value='', selected='false')
+            input#radio-calculator(type='radio', name='page-selector', value='', checked='')
+            input#radio-checkTheMath(type='radio', name='page-selector', value='', selected='false')
+            section#about.about.page
+                h2 About
+                hr
+                h4 How It Works
+                p Lumber Calculator grabs the prices and measurements of several products from
+                    a(target='_blank', href='http://www.homedepot.com/') The Home Depot &apos;s website and stores them in a small database on your browser. There is also a database of schematics.
+                p When you click the calculate button, it searches the database for all the materials whose measurements and properties match those required by the selected schematic. Next, it calculates the various ways the schematic can be built with the different materials, and then chooses the cheapest option, which is then displayed to you in the table.
+                h4 Story of Its Creation
+                img(src='http://i.imgur.com/OrRNRjQ.jpg', alt='Picture of Brenton Cozby at City Year', title='Picture of Brenton Cozby at City Year')
+                p Lazy people will go out of their way just to be a little bit lazier. This website was created by a lazy person.
+                p My name is
+                    a(title="I know it's cheesy, but yes--I have my own website", target='_blank', href='http://brentoncozby.com') Brenton Cozby
+                    | . On a random Tuesday afternoon in February, 2016, I was sitting behind my desk at the
+                    a(title='City Year Miami website', target='_blank', href='https://www.cityyear.org/miami') City Year Miami
+                    |  headquarters doing some math. &quot;How many two-by-sixes do I need to order from Home Depot if I want to build 9 benches for this school?&quot; I wondered. At the time, my job at City Year involved planning beautification projects for City Year&apos;s schools in Miami.
+                p Normally, I would look at
+                    a(target='_blank', href='https://twitter.com/CareForce?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor') Care Force&apos;s
+                    |  &quot;Backed Bench&quot; schematic, find out how many two-by-sixes it says are required to build a bench, and multiply that number by 9. But this created a lot of wasted wood.
+                p So, I tried to figure out how to fit more pieces into less wood. A few months of computer programming classes and several online tutorials later,
+                    span Lumber Calculator
+                    |  was born! Sort of...
+                p Before I got into coding, I did the calculations on paper and then on Excel, but even Excel had its limitations so that&apos;s why I turned to making my own calculator. At first, this application was built in the historic C programming language because it was the first one I learned. Today, however, it is written in HTML, CSS, and JavaScript (with no frameworks!).
+                p This calculator was saving me wood and money--about
+                    a(title='Check the math (Google Spreadsheet)', target='_blank', href='https://docs.google.com/spreadsheets/d/1tZeuBesO4tMaunjXckQteuQIQLz2f4vBDrn8fAdAVss/edit?usp=sharing') 5-20% in cost savings
+                    | , depending on what I was building and how many.
+                p Ever since building this calculator, what used to take a few hours on pen and paper now takes a lazy click of a button. &#xF609;
+            section#calculator.calculator.page
+                form
+                    #imagePlaceholder
+                    img#previewImage.previewImage(title='Schematic Preview', src='http://i.imgur.com/9n8a24l.png', alt='Preview of schematic PDF')
+                    select#selectSchematic(required='', autofocus='')
+                        option(value='', disabled='', selected='') Select a Schematic
+                    input#inputQuantity(type='number', placeholder='Qty', required='')
+                    button#calcButton(type='button') Calculate
+                #results.results
+                    #tableDiv.tableDiv
+                    #cutListDiv.cutListDiv
+            section#checkTheMath.checkTheMath.page
+                h2 Check the Math
+                hr
+                p To check the math of these calculations, view this
+                    a(title='Check the math (Google Spreadsheet)', target='_blank', href='https://docs.google.com/spreadsheets/d/1tZeuBesO4tMaunjXckQteuQIQLz2f4vBDrn8fAdAVss/edit?usp=sharing') Google Spreadsheet
+                    | . It shows you the micro-calculations within each calculation.
+                p If you&apos;re intereted in seeing how this thing really works, click on the button at the top right of this webpage. It should say &quot;Edit in JSbin&quot;. That will show you all the code and allow you to tinker with it. Don&apos;t worry--none of the changes you make will be permanent. Only I can do that. &#xF61C;
+                p And if you&apos;ve checked the math and find something wrong or something that can be improved, please
+                    a(title='opens a new email addressed to BrentonCozby@gmail.com', href='mailto:brenton.cozby@gmail.com', target='_blank') tell me
+                    | !
+    include partials/footer.pug
