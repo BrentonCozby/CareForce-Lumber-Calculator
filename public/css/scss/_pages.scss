@@ -57,3 +57,15 @@ input[name="page-selector"] {
 #radio-checkTheMath:not(:checked) ~ #checkTheMath {
     display: none;
 }
+
+.view-the-code {
+    display: block;
+    margin: 15px 0;
+    text-align: center;
+    color: #000;
+
+    button {
+        padding: 5px 15px;
+        font-family: $overlock-sc;
+    }
+}
