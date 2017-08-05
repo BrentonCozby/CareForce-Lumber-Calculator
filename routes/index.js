@@ -2,6 +2,10 @@ import express from 'express'
 const router = express.Router()
 const { ROOT_PATH } = require('../config.js')
 import { scrapePrice } from '../scraper.js'
+var geoip = require('geoip-lite')
+var ip = require('ip')
+
+console.log('YOUR IP: ', geoip.lookup(ip.address()));
 
 /* GET home page. */
 router.get('/', async function(req, res) {

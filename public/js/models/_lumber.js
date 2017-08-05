@@ -81,6 +81,7 @@ function getPrices() {
         return getOnePrice(item.url).then(price => {
             const newItem = {...item}
             newItem.price = price || item.price
+            console.log(item.price - newItem.price);
             return newItem
         })
     })
