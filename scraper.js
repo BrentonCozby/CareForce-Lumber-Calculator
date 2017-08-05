@@ -14,7 +14,6 @@ export function scrapePrice(url) {
     return new Promise((resolve, reject) => {
         rp(options).then(($) => {
             const price = $('#ajaxPrice').attr('content') || null
-            console.log(price);
             resolve(price)
         }).catch((err) => {
             resolve(null)
