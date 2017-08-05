@@ -58,7 +58,7 @@ function getOnePrice(url) {
 
     return new Promise((resolve, reject) => {
         $.getJSON({
-            url: '/lumber',
+            url: '/CareForce-Lumber-Calculator/lumber',
             data: {url: encodeURI(url)}
         })
         .done(async data => {
