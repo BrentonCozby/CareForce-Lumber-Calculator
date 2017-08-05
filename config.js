@@ -1,1 +1,2 @@
-export const PUBLIC_PATH = '/CareForce-Lumber-Calculator/'
+exports.ROOT_PATH = '/CareForce-Lumber-Calculator/'
+// exports.ROOT_PATH = '/'

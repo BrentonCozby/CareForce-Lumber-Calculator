@@ -56,9 +56,11 @@ function getLocation() {
 function getOnePrice(url) {
     if(!url) return null
 
+    const endpoint = `${ROOT_PATH}lumber`
+
     return new Promise((resolve, reject) => {
         $.getJSON({
-            url: '/CareForce-Lumber-Calculator/lumber',
+            url: endpoint,
             data: {url: encodeURI(url)}
         })
         .done(async data => {

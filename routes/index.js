@@ -1,6 +1,6 @@
 import express from 'express'
 const router = express.Router()
-import { PUBLIC_PATH } from '../config.js'
+const { ROOT_PATH } = require('../config.js')
 import { scrapePrice } from '../scraper.js'
 
 /* GET home page. */
@@ -8,7 +8,7 @@ router.get('/', async function(req, res) {
     res.render('index', {
         title: 'Care Force Lumber Calculator',
         description: 'Optimizes lumber orders and provides cut lists for various City Year Care Force schematics.',
-        PUBLIC_PATH
+        ROOT_PATH
     })
 })
 

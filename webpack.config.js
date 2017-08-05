@@ -1,5 +1,6 @@
 const webpack = require('webpack')
 require('dotenv').config()
+const { ROOT_PATH } = require('./config.js')
 
 module.exports = {
     entry: ['babel-polyfill', './public/js/index.js'],
@@ -29,7 +30,9 @@ module.exports = {
             }
         ]
     },
-    devServer: {
-
-    }
+    plugins: [
+        new webpack.DefinePlugin({
+            ROOT_PATH: JSON.stringify(ROOT_PATH)
+        })
+    ]
 }
