@@ -13,7 +13,7 @@
 
         tableDivContent += `<h3 class="tableHeader">Optimized Order</h3>`;
         tableDivContent += table;
-        tableDivContent += `<p class="tableNote">Optimized by lumber cost. Prices retrieved from <a href="http://www.homedepot.com/">The Home Depot</a>.</p>`;
+        tableDivContent += `<p class="tableNote">Optimized by lumber cost. Prices retrieved from <a href="http://www.homedepot.com/">The Home Depot</a> near you.</p>`;
         g.$tableDiv.append(tableDivContent);
     }
 

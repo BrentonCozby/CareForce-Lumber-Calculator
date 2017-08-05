@@ -1,15 +1,16 @@
 const g = require('./controllers/_globals')
-const { lumber, getPrices } = require('./models/_lumber')
+const { getPrices } = require('./models/_lumber')
 const schematics = require('./models/_schematics')
 const decimalRound = require('./controllers/_decimalRound')
 const optimize = require('./controllers/_optimize')
 const form = require('./controllers/_form')
 const menu = require('./controllers/_menu')
 
+
 var setup = {
     init: function() {
-        getPrices().then(prices => {
-            localStorage.setItem('lumber', JSON.stringify(lumber))
+        getPrices().then(newLumber => {
+            localStorage.lumber = JSON.stringify(newLumber)
         })
         form.init()
         menu.init()

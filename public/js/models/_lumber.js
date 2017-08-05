@@ -47,7 +47,11 @@ const lumber = [
     LumberMaker(`1" x 4" x 12'`, 1, 4, 144, 5.87, `http://www.homedepot.com/p/WeatherShield-1-in-x-4-in-x-12-ft-Ground-Contact-Pressure-Treated-Board-253915/206973905`)
 ]
 
-localStorage.setItem('lumber', JSON.stringify(lumber))
+function getLocation() {
+    ("geolocation" in navigator) && navigator.geolocation.getCurrentPosition(function(position) {
+        console.log(position.coords.latitude, position.coords.longitude)
+    });
+}
 
 function getOnePrice(url) {
     if(!url) return null
@@ -55,7 +59,7 @@ function getOnePrice(url) {
     return new Promise((resolve, reject) => {
         $.getJSON({
             url: '/lumber',
-            data: {url}
+            data: {url: encodeURI(url)}
         })
         .done(async data => {
             resolve(data)
@@ -67,17 +71,19 @@ function getOnePrice(url) {
 }
 
 function getPrices() {
-    const prices = []
+    const oldLumber = (localStorage.lumber)
+                ? JSON.parse(localStorage.lumber)
+                : lumber
 
-    lumber.forEach((item, i) => {
-        getOnePrice(item.url).then(price => {
-            lumber[i].price = price || lumber[i].price
-            console.log(lumber[i].price);
-            prices.push()
+    const newLumber = oldLumber.map((item, i) => {
+        return getOnePrice(item.url).then(price => {
+            const newItem = {...item}
+            newItem.price = price || item.price
+            return newItem
         })
     })
 
-    return Promise.all(prices)
+    return Promise.all(newLumber)
 }
 
 export { getPrices }

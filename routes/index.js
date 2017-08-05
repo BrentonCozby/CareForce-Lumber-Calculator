@@ -2,7 +2,6 @@ import express from 'express'
 const router = express.Router()
 import { PUBLIC_PATH } from '../config.js'
 import { scrapePrice } from '../scraper.js'
-import { lumber } from '../lumber.js'
 
 /* GET home page. */
 router.get('/', async function(req, res) {

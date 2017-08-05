@@ -2,10 +2,6 @@ import { lumber as defaultLumber } from '../models/_lumber'
 const g = require('./_globals');
 const schematics = require('../models/_schematics');
 
-const localLumber = JSON.parse(localStorage.getItem('lumber'))
-
-const lumber = localLumber || defaultLumber
-
 // For each lumber length, calculate the quantity of lumber needed to make
 // the required quantity of cuts, and save the scrap per beam and the scrap
 // of the last beam
@@ -38,6 +34,10 @@ function _chooseCheapestCuts(arrayOfcutsData) {
 }
 
 function _createArrayOfCutsData(schematic, inputQuant) {
+    const lumber = localStorage.lumber
+                ? JSON.parse(localStorage.lumber)
+                : defaultLumber
+
     var arrayOfcutData = [];
     schematic.cuts.forEach(function(cut) {
         lumber.forEach(function(beam) {
