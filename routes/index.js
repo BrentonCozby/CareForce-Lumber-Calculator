@@ -21,7 +21,7 @@ router.get('/lumber', async (req, res) => {
     // res.send(price)
     const clientIp = getClientAddress(req)
     const price = await scrapePrice(decodeURI(req.query.url), clientIp)
-    res.send({ price, clientIp })
+    res.send({ price, clientIp, serverIp: '107.170.51.204' })
 })
 
 module.exports = router

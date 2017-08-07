@@ -78,15 +78,16 @@ function getPrices() {
                 : lumber
 
     const newLumber = oldLumber.map((item, i) => {
-        return getOnePrice(item.url).then(({price, clientIp}) => {
+        return getOnePrice(item.url).then(({price, clientIp, serverIp}) => {
             const newItem = {...item}
             newItem.price = price || item.price
             console.log({
-                diff: newItem.price - item.price,
+                diff: +newItem.price - +item.price,
                 old: item.price,
                 new: newItem.price,
                 url: item.url,
-                clientIp
+                clientIp,
+                serverIp
             })
             return newItem
         })
