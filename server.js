@@ -16,7 +16,7 @@ app.set('view engine', 'pug');
 
 // Middleware
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-app.use(morgan('dev'));
+// app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Use routes
