@@ -78,9 +78,11 @@ function getPrices() {
                 : lumber
 
     const newLumber = oldLumber.map((item, i) => {
-        return getOnePrice(item.url).then(price => {
+        return getOnePrice(item.url).then(({price, clientIp}) => {
             const newItem = {...item}
             newItem.price = price || item.price
+            console.log(newItem.price - item.price, `old: ${item.price}`, `new: ${newItem.price}`)
+            console.log('Requested from IP address: ', clientIp);
             return newItem
         })
     })
