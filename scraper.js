@@ -1,29 +1,8 @@
+/* eslint-disable no-console */
+
 import http from 'http'
 import url from 'url'
-import rp from 'request-promise'
 import cheerio from 'cheerio'
-import { SITE_URL } from './config.js'
-
-// export function scrapePrice(url) {
-//     if(!url) return false
-//
-//     const options = {
-//         url,
-//         transform: function(body) {
-//             return cheerio.load(body);
-//         }
-//     }
-//
-//     return new Promise((resolve, reject) => {
-//         rp(options).then(($) => {
-//             const price = $('#ajaxPrice').attr('content') || null
-//             resolve(price)
-//         }).catch((err) => {
-//             resolve(null)
-//             console.log(err);
-//         });
-//     })
-// }
 
 export async function scrapePrice(homeDepotUrl, clientIp) {
     if(!homeDepotUrl || !clientIp) return false
@@ -39,7 +18,7 @@ export async function scrapePrice(homeDepotUrl, clientIp) {
         }
     }
 
-    const html = new Promise((resolve, reject) => {
+    const html = new Promise((resolve) => {
         let body = ''
 
         const req = http.request(options, res => {
@@ -53,7 +32,7 @@ export async function scrapePrice(homeDepotUrl, clientIp) {
         })
 
         req.on('error', err => {
-            console.error('Request error: ', err.message);
+            console.error('Request error: ', err.message)
         })
 
         req.end()

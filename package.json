@@ -36,8 +36,6 @@
         "dotenv": "^4.0.0",
         "ejs": "^2.0.0-rc.3",
         "express": "^4.16.2",
-        "request": "^2.83.0",
-        "request-promise": "^4.2.2",
         "sanitize-html": "^1.14.1"
     },
     "devDependencies": {
