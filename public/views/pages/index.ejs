@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include(`${partials}/head`, {pageTitle: 'Home'}); -%>
+<body>
+    <!--[if lt IE 8]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <div id="overlay" class="overlay"></div>
+
+    <%- include(`${partials}/header`) -%>
+
+    <main>
+        <div id="wrapper" class="wrapper">
+            <input id="radio-about" type="radio" name="page-selector" value="" selected="false" />
+            <input id="radio-calculator" type="radio" name="page-selector" value="" checked="" />
+            <input id="radio-checkTheMath" type="radio" name="page-selector" value="" selected="false" />
+
+            <section id="about" class="about page">
+                <h2>About</h2>
+                <hr/>
+                <h4>How It Works</h4>
+                <p>Lumber Calculator grabs the prices and measurements of several products from&nbsp;<a target="_blank" href="http://www.homedepot.com/">The Home Depot &apos;s website</a>&nbsp;and stores them in a small database on your browser. There is also a database of schematics.</p>
+                <p>When you click the calculate button, it searches the database for all the materials whose measurements and properties match those required by the selected schematic. Next, it calculates the various ways the schematic can be built with the different materials, and then chooses the cheapest option, which is then displayed to you in the table.</p>
+                <h4>Story of Its Creation</h4>
+                <img src="http://i.imgur.com/OrRNRjQ.jpg" alt="Picture of Brenton Cozby at City Year" title="Picture of Brenton Cozby at City Year" />
+                <p>Lazy people will go out of their way just to be a little bit lazier. This website was created by a lazy person.</p>
+                <p>My name is&nbsp;<a title="I know it's cheesy, but yes--I have my own website" target="_blank" href="http://brentoncozby.com">Brenton Cozby</a>. On a random Tuesday afternoon in February, 2016, I was sitting behind my desk at the&nbsp;<a title="City Year Miami website" target="_blank" href="https://www.cityyear.org/miami">City Year Miami</a>&nbsp;headquarters doing some math. &quot;How many two-by-sixes do I need to order from Home Depot if I want to build 9 benches for this school?&quot; I wondered. At the time, my job at City Year involved planning beautification projects for City Year&apos;s schools in Miami.</p>
+                <p>Normally, I would look at&nbsp;<a target="_blank" href="https://twitter.com/CareForce?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor">Care Force&apos;s</a> &quot;Backed Bench&quot; schematic, find out how many two-by-sixes it says are required to build a bench, and multiply that number by 9. But this created a lot of wasted wood.</p>
+                <p>So, I tried to figure out how to fit more pieces into less wood. A few months of computer programming classes and several online tutorials later, <span>Lumber Calculator</span> was born! Sort of...</p>
+                <p>Before I got into coding, I did the calculations on paper and then on Excel, but even Excel had its limitations so that&apos;s why I turned to making my own calculator. At first, this application was built in the historic C programming language because it was the first one I learned. Today, however, it is written in HTML, CSS, and JavaScript (with no frameworks!).</p>
+                <p>This calculator was saving me wood and money--about&nbsp;<a title="Check the math (Google Spreadsheet)" target="_blank" href="https://docs.google.com/spreadsheets/d/1tZeuBesO4tMaunjXckQteuQIQLz2f4vBDrn8fAdAVss/edit?usp=sharing">5-20% in cost savings</a>, depending on what I was building and how many.</p>
+                <p>Ever since building this calculator, what used to take a few hours on pen and paper now takes a lazy click of a button. &#xF609;</p>
+                <a href="https://github.com/BrentonCozby/CareForce-Lumber-Calculator" rel="noopener" target="_blank" class="view-the-code">
+                    <button>View the Code</button>
+                </a>
+            </section>
+
+            <section id="calculator" class="calculator page">
+                <form>
+                    <div id="imagePlaceholder"></div>
+                    <img id="previewImage" title="Schematic Preview" src="http://i.imgur.com/9n8a24l.png" alt="Preview of schematic PDF" class="previewImage" />
+                    <select id="selectSchematic" required autofocus>
+                        <option value="" disabled selected>Select a Schematic</option>
+                    </select>
+                    <input id="inputQuantity" type="number" placeholder="Qty" required />
+                    <button id="calcButton" type="button">Calculate</button>
+                </form>
+                <div id="results" class="results">
+                    <div id="tableDiv" class="tableDiv"></div>
+                    <div id="cutListDiv" class="cutListDiv"></div>
+                </div>
+            </section>
+
+            <section id="checkTheMath" class="checkTheMath page">
+                <h2>Check the Math</h2>
+                <hr/>
+                <p>To check the math of these calculations, view this&nbsp;<a title="Check the math (Google Spreadsheet)" target="_blank" href="https://docs.google.com/spreadsheets/d/1tZeuBesO4tMaunjXckQteuQIQLz2f4vBDrn8fAdAVss/edit?usp=sharing">Google Spreadsheet</a>. It shows you the micro-calculations within each calculation.</p>
+                <p>And if you&apos;ve checked the math and find something wrong or something that can be improved, please&nbsp;<a title="opens a new email addressed to BrentonCozby@gmail.com" href="mailto:brenton.cozby@gmail.com" target="_blank">tell me</a>!</p>
+                <a href="https://github.com/BrentonCozby/CareForce-Lumber-Calculator" rel="noopener" target="_blank" class="view-the-code">
+                    <button>View the Code</button>
+                </a>
+            </section>
+        </div>
+    </main>
+
+    <%- include(`${partials}/footer`); -%>
+    <%- include(`${partials}/scripts`); -%>
+</body>
+</html>

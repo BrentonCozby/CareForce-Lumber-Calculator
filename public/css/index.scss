@@ -1,0 +1,46 @@
+@import "globals";
+@import "normalize";
+@import "reset";
+@import "header";
+@import "footer";
+@import "form";
+@import "table";
+@import "cutList";
+@import "pages";
+@import "min375";
+@import "min768";
+@import "print";
+@import "error";
+
+#overlay {
+  background: #000;
+  bottom: 0;
+  display: none;
+  left: 0;
+  opacity: .5;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 50;
+}
+
+body {
+    min-height: 100vh;
+    width: 100%;
+}
+
+main {
+    box-sizing: border-box;
+    width: 100%;
+    min-height: calc(100vh - 120px);
+    margin-top: $header-height;
+    display: inline-block;
+}
+
+.wrapper {
+    width: 100%;
+    height: 100%;
+    max-width: $container-max-width;
+    margin: auto;
+    background-color: #fff;
+}

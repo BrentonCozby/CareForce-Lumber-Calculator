@@ -1,8 +1,5 @@
 const g = require('./controllers/_globals')
 const { getPrices } = require('./models/_lumber')
-const schematics = require('./models/_schematics')
-const decimalRound = require('./controllers/_decimalRound')
-const optimize = require('./controllers/_optimize')
 const form = require('./controllers/_form')
 const menu = require('./controllers/_menu')
 
