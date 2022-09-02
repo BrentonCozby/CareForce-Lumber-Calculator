@@ -1,12 +1,12 @@
 import { lumber as defaultLumber } from '../models/_lumber'
-const g = require('./_globals')
+import g from './_globals'
 const schematics = require('../models/_schematics')
 
 // For each lumber length, calculate the quantity of lumber needed to make
 // the required quantity of cuts, and save the scrap per beam and the scrap
 // of the last beam
 
-function calcLumberOrder(selectedSchematic, inputtedQuant) {
+export function calcLumberOrder(selectedSchematic, inputtedQuant) {
     for(let group in schematics.list) {
         if(schematics.list.hasOwnProperty(group)) {
             for(let schem in schematics.list[group]) {
@@ -158,9 +158,6 @@ function _addSpecialParts(orderByBeam) {
     return orderWithSpecialItems
 }
 
-function calcFullOrder(lumberOrderCopy) {
+export function calcFullOrder(lumberOrderCopy) {
     return  _addSpecialParts(_reduceOrderByBeam(_sortDataByBeamName(lumberOrderCopy)))
 }
-
-module.exports.calcLumberOrder = calcLumberOrder
-module.exports.calcFullOrder = calcFullOrder

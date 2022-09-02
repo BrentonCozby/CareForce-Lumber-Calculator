@@ -64,12 +64,6 @@ function getOnePrice(url) {
             data: {url: encodeURI(url)}
         }).done(data => {
             resolve(data)
-        }).fail(err => {
-            if (err) {
-                throw new Error(err)
-            }
-
-            resolve(null)
         })
     })
 }

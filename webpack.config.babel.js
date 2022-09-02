@@ -1,14 +1,14 @@
 import webpack from 'webpack'
-import { join } from 'path'
+import path from 'path'
 import * as config from './config.js'
 
 export default {
     entry: {
-        bundle: ['./' + join('public', 'js', 'index.js')],
-        common: ['./' + join('public', 'js', 'common', 'index.js')]
+        bundle: path.resolve('./public', 'js', 'index.js'),
+        common: path.resolve('./public', 'js', 'common', 'index.js'),
     },
     output: {
-        filename: './' + join('dist', 'js', '[name].js'),
+        filename: path.join('js', '[name].js'),
         publicPath: config.PP
     },
     module: {
@@ -19,10 +19,7 @@ export default {
                 use: [{
                     loader: 'babel-loader',
                     options: {
-                        presets: [
-                            ['env', { modules: false }],
-                            'stage-0'
-                        ]
+                        presets: ['@babel/preset-env'],
                     }
                 }]
             }
