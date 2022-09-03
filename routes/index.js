@@ -20,4 +20,4 @@ const getClientAddress = function (req) {
     return (req.headers['forwarded'] || req.headers['x-forwarded-for'] || '').split(',')[0] || req.connection.remoteAddress
 }
 
-module.exports = router
+export default router

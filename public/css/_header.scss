@@ -10,7 +10,9 @@ header {
 nav {
     text-align: left;
     position: relative;
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     width: 100%;
     max-width: $container-max-width;
     margin: auto;
@@ -28,12 +30,11 @@ nav {
 }
 
 .menuButton {
-    display: inline-block;
+    display: block;
     position: relative;
     height: 1.9rem;
     font-size: 0.8rem;
     width: 40px;
-    vertical-align: middle;
     font-family: $overlock-sc;
     padding: 3px;
     border-radius: 5px;
@@ -66,11 +67,13 @@ nav {
 .menuHeader {
     background-color: #555;
     border-bottom: 3px solid #888;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .menuWord {
     color: #999;
-    display: inline-block;
     font-family: $overlock-sc;
     font-size: 1.2rem;
     line-height: 2.5;
@@ -82,16 +85,11 @@ nav {
 
 .closeBtn {
     color: #eee;
-    text-align: right;
-    display: inline-block;
     font-family: $overlock-sc;
     font-size: 2.5rem;
-    line-height: 0.5;
-    padding-right: 10px;
+    line-height: .7;
     margin: 0;
-    position: relative;
-    top: 3px;
-    width: 20%;
+    margin-right: 10px;
     cursor: pointer;
 }
 

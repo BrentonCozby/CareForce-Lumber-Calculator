@@ -9,10 +9,10 @@ import {
     SITE_URL,
     DEVELOPER_NAME,
     DEVELOPER_URL,
-    Dir
+    Dir,
 } from '../config.js'
 
-function transformer({filename, sourcePath}) {
+function transformer({ filename, sourcePath }) {
     const filePath = resolve(sourcePath, filename)
     let fileContents = fs.readFileSync(filePath, 'utf-8')
 
@@ -22,7 +22,7 @@ function transformer({filename, sourcePath}) {
         `* ${SITE_URL}\n` +
         `* @author ${DEVELOPER_NAME} -- ${DEVELOPER_URL}\n` +
         `* Copyright ${(new Date).getFullYear()}. MIT Licensed.\n` +
-        '*/\n\n'  + fileContents
+        '*/\n\n' + fileContents
 
     fs.writeFile(filePath, fileContents, err => {
         if(err) return console.log(err)

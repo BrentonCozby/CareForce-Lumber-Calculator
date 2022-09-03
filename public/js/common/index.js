@@ -14,9 +14,9 @@ window.libs = {}
 //
 //      const { sanitizeHTML } = libs
 //
-libs.sanitizeHTML = require('sanitize-html')
+libs.sanitizeHTML = require('dompurify').sanitize
 
 // Dump static code here
+require('./decimal-round.js')
 require('./helpers.js')
 require('./errors.js')
-require('./decimal-round.js')

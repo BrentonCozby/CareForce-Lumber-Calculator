@@ -1,15 +1,15 @@
 import { lumber as defaultLumber } from '../models/_lumber'
-const g = require('./_globals')
+import g from './_globals'
 const schematics = require('../models/_schematics')
 
 // For each lumber length, calculate the quantity of lumber needed to make
 // the required quantity of cuts, and save the scrap per beam and the scrap
 // of the last beam
 
-function calcLumberOrder(selectedSchematic, inputtedQuant) {
-    for(let group in schematics.list) {
+export function calcLumberOrder(selectedSchematic, inputtedQuant) {
+    for(const group in schematics.list) {
         if(schematics.list.hasOwnProperty(group)) {
-            for(let schem in schematics.list[group]) {
+            for(const schem in schematics.list[group]) {
                 if(schematics.list[group].hasOwnProperty(schem) && selectedSchematic == schem) {
                     return _chooseCheapestCuts(_createArrayOfCutsData(schematics.list[group][schem], inputtedQuant))
                 }
@@ -19,9 +19,9 @@ function calcLumberOrder(selectedSchematic, inputtedQuant) {
 }
 
 function _chooseCheapestCuts(arrayOfcutsData) {
-    var cheapestOrder = []
-    var list = arrayOfcutsData
-    list.push({cutName: 'empty object'})
+    const cheapestOrder = []
+    const list = arrayOfcutsData
+    list.push({ cutName: 'empty object' })
     list.reduce(function(prevCut, currCut) {
         if (currCut.cutName === prevCut.cutName) {
             return (currCut.costTotal < prevCut.costTotal) ? currCut : prevCut
@@ -34,11 +34,11 @@ function _chooseCheapestCuts(arrayOfcutsData) {
 }
 
 function _createArrayOfCutsData(schematic, inputQuant) {
-    const lumber = localStorage.lumber
-        ? JSON.parse(localStorage.lumber)
+    const lumber = localStorage.getItem('lumber')
+        ? JSON.parse(localStorage.getItem('lumber'))
         : defaultLumber
 
-    var arrayOfcutData = []
+    const arrayOfcutData = []
     schematic.cuts.forEach(function(cut) {
         lumber.forEach(function(beam) {
             if (beam.thick === cut.thick && beam.wide === cut.wide) {
@@ -51,7 +51,7 @@ function _createArrayOfCutsData(schematic, inputQuant) {
 }
 
 function _calcQuantsPerLumberSize(beamObj, cutObj, inputtedQuant) {
-    var cutData = {}
+    const cutData = {}
 
     cutData.cutName = `${cutObj.thick}" x ${cutObj.wide}" x ${cutObj.long}"`
     cutData.beamName = beamObj.name
@@ -85,8 +85,8 @@ function _calcQuantsPerLumberSize(beamObj, cutObj, inputtedQuant) {
 }
 
 function _sortDataByBeamName(lumberOrderCopy) {
-    var sortedLumberOrder = []
-    var beamNames = lumberOrderCopy.map(beam => beam.beamName).sort()
+    const sortedLumberOrder = []
+    const beamNames = lumberOrderCopy.map(beam => beam.beamName).sort()
     for(let i = 0, beamNamesLength = beamNames.length; i < beamNamesLength; i++) {
         for(let j = 0, lumberOrderLength = lumberOrderCopy.length; j < lumberOrderLength; j++) {
             if(beamNames[i] === lumberOrderCopy[j].beamName) {
@@ -99,8 +99,8 @@ function _sortDataByBeamName(lumberOrderCopy) {
 }
 
 function _reduceOrderByBeam(sortedLumberOrder) {
-    var orderByBeam = []
-    sortedLumberOrder.push({beamName: 'empty'})
+    const orderByBeam = []
+    sortedLumberOrder.push({ beamName: 'empty' })
     sortedLumberOrder.reduce((prevCut, currCut) => {
         if (currCut.beamName == prevCut.beamName || currCut.beamName == prevCut.name) {
             return {
@@ -108,7 +108,7 @@ function _reduceOrderByBeam(sortedLumberOrder) {
                 url: currCut.url,
                 quant: currCut.beamQuant + ((prevCut.hasOwnProperty('beamQuant')) ? prevCut.beamQuant : prevCut.quant),
                 scrap: currCut.scrapTotal + ((prevCut.hasOwnProperty('scrapTotal')) ? prevCut.scrapTotal : prevCut.scrap),
-                cost: currCut.costTotal + ((prevCut.hasOwnProperty('costTotal')) ? prevCut.costTotal : prevCut.cost)
+                cost: currCut.costTotal + ((prevCut.hasOwnProperty('costTotal')) ? prevCut.costTotal : prevCut.cost),
             }
         } else {
             orderByBeam.push({
@@ -125,14 +125,14 @@ function _reduceOrderByBeam(sortedLumberOrder) {
 }
 
 function _addSpecialParts(orderByBeam) {
-    var orderWithSpecialItems = orderByBeam
-    var selected = g.$select.val()
-    var quant = g.$quant.val()
-    var schematic
+    const orderWithSpecialItems = orderByBeam
+    const selected = g.$select.val()
+    const quant = g.$quant.val()
+    let schematic
 
-    for(let group in schematics.list) {
+    for(const group in schematics.list) {
         if(schematics.list.hasOwnProperty(group)) {
-            for(let schem in schematics.list[group]) {
+            for(const schem in schematics.list[group]) {
                 if(schematics.list[group].hasOwnProperty(schem) && selected == schem) {
                     schematic = schematics.list[group][schem]
                     break
@@ -143,8 +143,8 @@ function _addSpecialParts(orderByBeam) {
 
     if (schematic.specials) {
         schematic.specials.forEach(function(item) {
-            var calculatedItem = {}
-            for(let key in item) {
+            const calculatedItem = {}
+            for(const key in item) {
                 if(typeof item[key] == 'number') {
                     calculatedItem[key] = Math.ceil10(item[key] * quant, -2)
                 }
@@ -158,9 +158,6 @@ function _addSpecialParts(orderByBeam) {
     return orderWithSpecialItems
 }
 
-function calcFullOrder(lumberOrderCopy) {
-    return  _addSpecialParts(_reduceOrderByBeam(_sortDataByBeamName(lumberOrderCopy)))
+export function calcFullOrder(lumberOrderCopy) {
+    return _addSpecialParts(_reduceOrderByBeam(_sortDataByBeamName(lumberOrderCopy)))
 }
-
-module.exports.calcLumberOrder = calcLumberOrder
-module.exports.calcFullOrder = calcFullOrder

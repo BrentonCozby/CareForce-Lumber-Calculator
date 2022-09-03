@@ -7,13 +7,13 @@ let rootPath = undefined
 
 const defaultOptions = {
     destination: null,
-    flatten: false
+    flatten: false,
 }
 
 export default function transformFiles(
     sourcePath = '',
     options = defaultOptions,
-    fileTransformer = function() {}
+    fileTransformer = function() {},
 ) {
     validateArgs()
 
@@ -42,7 +42,7 @@ export default function transformFiles(
         if (options.flatten && typeof options.flatten !== 'boolean') {
             throw new TypeError('options.flatten must be a boolean value.\n')
         }
-        for (let optionName in options) {
+        for (const optionName in options) {
             if (optionName in defaultOptions === false) {
                 throw new Error(`'${optionName}' is not a valid option.\n`)
             }
@@ -55,7 +55,7 @@ export default function transformFiles(
         fileTransformer({
             filename,
             sourcePath,
-            destinationPath
+            destinationPath,
         })
     }
 
@@ -63,7 +63,7 @@ export default function transformFiles(
         return fs.statSync(pathToFileOrDir).isDirectory()
     }
 
-    function setDestinationPath(source, {destination, flatten}) {
+    function setDestinationPath(source, { destination, flatten }) {
         let destPath = source
         if (destination) {
             if (flatten) {

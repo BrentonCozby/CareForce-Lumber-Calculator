@@ -8,10 +8,10 @@ import transformFiles from './transform-files.js'
 
 const dirs = [
     resolve(Dir.dist, 'js'),
-    resolve(Dir.dist, 'css')
+    resolve(Dir.dist, 'css'),
 ]
 
-let mapData = {}
+const mapData = {}
 
 function transformer({ filename, sourcePath, destinationPath }) {
     const oldFilePath = resolve(sourcePath, filename)

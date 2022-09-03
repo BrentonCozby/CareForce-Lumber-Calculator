@@ -21,7 +21,7 @@ transformFiles(resolve(Dir.dist), {}, ({ filename, sourcePath, destinationPath }
             minifyCSS: true,
             minifyJS: true,
             minifyURLs: true,
-            removeRedundantAttributes: true
+            removeRedundantAttributes: true,
         })
 
         fs.writeFile(resolve(destinationPath, filename), minified, err => {

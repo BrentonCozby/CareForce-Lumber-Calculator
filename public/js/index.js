@@ -1,13 +1,13 @@
-const g = require('./controllers/_globals')
-const { getPrices } = require('./models/_lumber')
-const form = require('./controllers/_form')
-const menu = require('./controllers/_menu')
+import g from './controllers/_globals'
+import { getPrices } from './models/_lumber'
+import form from './controllers/_form'
+import menu from './controllers/_menu'
 
 
-var setup = {
+const setup = {
     init: function() {
         getPrices().then(newLumber => {
-            localStorage.lumber = JSON.stringify(newLumber)
+            localStorage.setItem('lumber', JSON.stringify(newLumber))
         })
         form.init()
         menu.init()
@@ -21,8 +21,8 @@ var setup = {
                 g.$prevImage.removeClass('lightbox')
                 g.$menuItemsDiv.removeClass('open')
             })
-        }
-    }
+        },
+    },
 }
 
 $(document).ready(setup.init)

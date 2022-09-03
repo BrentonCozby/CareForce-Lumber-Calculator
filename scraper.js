@@ -14,8 +14,8 @@ export async function scrapePrice(homeDepotUrl, clientIp) {
         path: homeDepotUrl.path,
         method: 'GET',
         headers: {
-            'Fowarded': `for="[${clientIp}]"`
-        }
+            'Fowarded': `for="[${clientIp}]"`,
+        },
     }
 
     const html = new Promise((resolve) => {

@@ -4,9 +4,7 @@ import { resolve } from 'path'
 // build-tools/ejs-to-html.js in the 'transformer' function
 
 // PP (public path) must begin and end with '/' unless it is just '/'
-export const PP = process.env.NODE_ENV === 'production' ?
-    '/CareForce-Lumber-Calculator/':
-    '/'
+export const PP = ''
 export const SITE_TITLE = 'Care Force Lumber Calculator'
 export const SITE_NAME = 'CareForce-Lumber-Calculator'
 export const DESCRIPTION = 'Calulates optimal lumber orders for Care Force schematics.'

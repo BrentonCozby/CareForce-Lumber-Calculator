@@ -5,7 +5,7 @@ function LumberMaker(name, thickness, width, length, price, url) {
         'wide': width,
         'long': length,
         'url': url,
-        'price': price
+        'price': price,
     }
 }
 
@@ -16,7 +16,7 @@ const lumber = [
         'wide': 4,
         'long': 96,
         'price': 3.27,
-        'url': 'http://www.homedepot.com/p/2-in-x-4-in-x-8-ft-2-Ground-Contact-Pressure-Treated-Lumber-106147/206970948'
+        'url': 'http://www.homedepot.com/p/2-in-x-4-in-x-8-ft-2-Ground-Contact-Pressure-Treated-Lumber-106147/206970948',
     },
     LumberMaker('2" x 4" x 10\'', 2, 4, 120, 5.47, 'http://www.homedepot.com/p/WeatherShield-2-in-x-4-in-x-10-ft-2-Prime-Ground-Contact-Pressure-Treated-Lumber-253920/206967803'),
     LumberMaker('2" x 4" x 12\'', 2, 4, 144, 6.87, 'http://www.homedepot.com/p/WeatherShield-2-in-x-4-in-x-12-ft-2-Prime-Ground-Contact-Pressure-Treated-Lumber-253920/206967813'),
@@ -44,7 +44,7 @@ const lumber = [
     LumberMaker('1" x 3" x 8\'', 1, 3, 96, 2.57, 'http://www.homedepot.com/p/WeatherShield-1-in-x-3-in-x-8-ft-Pressure-Treated-Board-481861/100057569'),
     LumberMaker('1" x 4" x 8\'', 1, 4, 96, 3.97, 'http://www.homedepot.com/p/WeatherShield-1-in-x-4-in-x-8-ft-Ground-Contact-Pressure-Treated-Board-253915/206973928'),
     LumberMaker('1" x 4" x 10\'', 1, 4, 120, 4.97, 'http://www.homedepot.com/p/WeatherShield-1-in-x-4-in-x-10-ft-Ground-Contact-Pressure-Treated-Board-253915/206971108?keyword=1x4x10+pressure+treated'),
-    LumberMaker('1" x 4" x 12\'', 1, 4, 144, 5.87, 'http://www.homedepot.com/p/WeatherShield-1-in-x-4-in-x-12-ft-Ground-Contact-Pressure-Treated-Board-253915/206973905')
+    LumberMaker('1" x 4" x 12\'', 1, 4, 144, 5.87, 'http://www.homedepot.com/p/WeatherShield-1-in-x-4-in-x-12-ft-Ground-Contact-Pressure-Treated-Board-253915/206973905'),
 ]
 
 // function getLocation() {
@@ -61,36 +61,22 @@ function getOnePrice(url) {
     return new Promise((resolve) => {
         $.getJSON({
             url: endpoint,
-            data: {url: encodeURI(url)}
+            data: { url: encodeURI(url) },
         }).done(data => {
             resolve(data)
-        }).fail(err => {
-            if (err) {
-                throw new Error(err)
-            }
-
-            resolve(null)
         })
     })
 }
 
 function getPrices() {
-    const oldLumber = (localStorage.lumber)
-        ? JSON.parse(localStorage.lumber)
+    const oldLumber = localStorage.getItem('lumber')
+        ? JSON.parse(localStorage.getItem('lumber'))
         : lumber
 
     const newLumber = oldLumber.map(item => {
-        return getOnePrice(item.url).then(({price, clientIp, serverIp}) => {
+        return getOnePrice(item.url).then(({ price, clientIp, serverIp }) => {
             const newItem = Object.assign({}, item)
             newItem.price = price || item.price
-            console.log({ // eslint-disable-line no-console
-                diff: +newItem.price - +item.price,
-                old: item.price,
-                new: newItem.price,
-                url: item.url,
-                clientIp,
-                serverIp
-            })
             return newItem
         })
     })

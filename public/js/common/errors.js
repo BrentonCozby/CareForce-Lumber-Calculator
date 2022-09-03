@@ -6,7 +6,7 @@
         'assert', 'clear', 'count', 'debug', 'dir', 'dirxml', 'error',
         'exception', 'group', 'groupCollapsed', 'groupEnd', 'info', 'log',
         'markTimeline', 'profile', 'profileEnd', 'table', 'time', 'timeEnd',
-        'timeline', 'timelineEnd', 'timeStamp', 'trace', 'warn'
+        'timeline', 'timelineEnd', 'timeStamp', 'trace', 'warn',
     ]
     let length = methods.length
     const console = (window.console = window.console || {})

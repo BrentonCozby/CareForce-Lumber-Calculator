@@ -1,15 +1,15 @@
 import webpack from 'webpack'
-import { join } from 'path'
+import path from 'path'
 import * as config from './config.js'
 
 export default {
     entry: {
-        bundle: ['./' + join('public', 'js', 'index.js')],
-        common: ['./' + join('public', 'js', 'common', 'index.js')]
+        bundle: path.resolve('./public', 'js', 'index.js'),
+        common: path.resolve('./public', 'js', 'common', 'index.js'),
     },
     output: {
-        filename: './' + join('dist', 'js', '[name].js'),
-        publicPath: config.PP
+        filename: path.join('js', '[name].js'),
+        publicPath: config.PP,
     },
     module: {
         rules: [
@@ -19,14 +19,11 @@ export default {
                 use: [{
                     loader: 'babel-loader',
                     options: {
-                        presets: [
-                            ['env', { modules: false }],
-                            'stage-0'
-                        ]
-                    }
-                }]
-            }
-        ]
+                        presets: ['@babel/preset-env'],
+                    },
+                }],
+            },
+        ],
     },
     plugins: [
         new webpack.DefinePlugin({
@@ -38,7 +35,7 @@ export default {
             SITE_URL: JSON.stringify(config.SITE_URL),
             SITE_IMAGE: JSON.stringify(config.SITE_IMAGE),
             DEVELOPER_NAME: JSON.stringify(config.DEVELOPER_NAME),
-            DEVELOPER_URL: JSON.stringify(config.DEVELOPER_URL)
-        })
-    ]
+            DEVELOPER_URL: JSON.stringify(config.DEVELOPER_URL),
+        }),
+    ],
 }
